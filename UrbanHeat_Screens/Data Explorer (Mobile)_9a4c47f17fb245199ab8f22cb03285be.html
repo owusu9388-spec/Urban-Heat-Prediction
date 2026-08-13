@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Location Dataset</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "primary": "#a13a00",
+                            "on-surface": "#1b1c1a",
+                            "outline-variant": "#dfc0b5",
+                            "risk-moderate": "#E0A030",
+                            "on-primary-container": "#fffbff",
+                            "on-secondary-fixed": "#1f1b16",
+                            "on-tertiary-fixed": "#001e2c",
+                            "surface-white": "#FFFFFF",
+                            "surface-container-lowest": "#ffffff",
+                            "on-secondary-container": "#6a635d",
+                            "inverse-primary": "#ffb598",
+                            "tertiary-container": "#007da8",
+                            "tertiary-fixed": "#c3e8ff",
+                            "on-error": "#ffffff",
+                            "primary-container": "#c2521b",
+                            "surface-container": "#efeeea",
+                            "secondary": "#635d57",
+                            "secondary-fixed-dim": "#cec5bd",
+                            "on-surface-variant": "#57423a",
+                            "risk-low": "#2FA96C",
+                            "surface-variant": "#e4e2de",
+                            "on-error-container": "#93000a",
+                            "tertiary": "#006385",
+                            "on-tertiary-fixed-variant": "#004d68",
+                            "on-background": "#1b1c1a",
+                            "surface-tint": "#a53c02",
+                            "background": "#fbf9f5",
+                            "primary-fixed-dim": "#ffb598",
+                            "on-primary-fixed-variant": "#7e2c00",
+                            "surface-dim": "#dbdad6",
+                            "surface-container-low": "#f5f3ef",
+                            "surface-container-highest": "#e4e2de",
+                            "on-primary": "#ffffff",
+                            "inverse-surface": "#30312e",
+                            "on-tertiary-container": "#fbfcff",
+                            "primary-fixed": "#ffdbce",
+                            "secondary-container": "#eae1d8",
+                            "surface-bright": "#fbf9f5",
+                            "on-primary-fixed": "#370e00",
+                            "risk-high": "#C4432B",
+                            "on-tertiary": "#ffffff",
+                            "secondary-fixed": "#eae1d8",
+                            "tertiary-fixed-dim": "#78d1ff",
+                            "inverse-on-surface": "#f2f0ec",
+                            "error-container": "#ffdad6",
+                            "on-secondary-fixed-variant": "#4b4640",
+                            "error": "#ba1a1a",
+                            "outline": "#8b7268",
+                            "surface": "#fbf9f5",
+                            "surface-container-high": "#eae8e4",
+                            "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "panel-width-tablet": "340px",
+                            "panel-width-desktop": "380px",
+                            "container-margin": "1.5rem",
+                            "gutter": "1rem",
+                            "component-gap": "0.75rem"
+                    },
+                    "fontFamily": {
+                            "display-score": ["Inter"],
+                            "display-score-mobile": ["Inter"],
+                            "label-bold": ["Inter"],
+                            "label-sm": ["Inter"],
+                            "body-md": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "headline-lg": ["Inter"],
+                            "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                            "display-score": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "display-score-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                            "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col pb-20">
+<!-- Top App Bar (Mobile version conceptually, adapted from JSON) -->
+<header class="bg-surface-bright/90 backdrop-blur-md sticky top-0 z-40 border-b border-outline-variant px-gutter py-4 flex justify-between items-center shadow-sm">
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary">Location Dataset</h1>
+<div class="flex gap-4 text-primary">
+<span class="material-symbols-outlined hover:text-primary transition-all">settings</span>
+</div>
+</header>
+<!-- Search Section -->
+<div class="px-gutter pt-4 pb-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-white border border-outline-variant rounded-full py-3 pl-10 pr-4 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder-on-surface-variant transition-colors shadow-sm" placeholder="Search locations..." type="text"/>
+</div>
+</div>
+<!-- Main Content Area -->
+<main class="flex-1 px-gutter py-4 space-y-component-gap">
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-4 py-1.5 rounded-full whitespace-nowrap">All</button>
+<button class="bg-surface-white text-on-surface border border-outline-variant font-label-bold text-label-bold px-4 py-1.5 rounded-full whitespace-nowrap">High Risk</button>
+<button class="bg-surface-white text-on-surface border border-outline-variant font-label-bold text-label-bold px-4 py-1.5 rounded-full whitespace-nowrap">Moderate</button>
+<button class="bg-surface-white text-on-surface border border-outline-variant font-label-bold text-label-bold px-4 py-1.5 rounded-full whitespace-nowrap">Low</button>
+</div>
+<!-- Location Cards List -->
+<div class="space-y-3">
+<!-- Card 1 (High Risk) -->
+<button class="w-full bg-surface-white rounded-xl p-4 shadow-[0px_4px_20px_rgba(31,27,22,0.08)] flex items-center justify-between group active:scale-95 transition-transform duration-150 text-left border border-transparent hover:border-outline-variant">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2.5 h-2.5 rounded-full bg-risk-high"></div>
+<span class="font-label-bold text-label-bold text-on-surface">Osu Central</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Commercial District</span>
+</div>
+<div class="font-display-score-mobile text-display-score-mobile text-risk-high">8.2</div>
+</button>
+<!-- Card 2 (Moderate Risk) -->
+<button class="w-full bg-surface-white rounded-xl p-4 shadow-[0px_4px_20px_rgba(31,27,22,0.08)] flex items-center justify-between group active:scale-95 transition-transform duration-150 text-left border border-transparent hover:border-outline-variant">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2.5 h-2.5 rounded-full bg-risk-moderate"></div>
+<span class="font-label-bold text-label-bold text-on-surface">Cantonments</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Residential Area</span>
+</div>
+<div class="font-display-score-mobile text-display-score-mobile text-risk-moderate">5.4</div>
+</button>
+<!-- Card 3 (Moderate Risk) -->
+<button class="w-full bg-surface-white rounded-xl p-4 shadow-[0px_4px_20px_rgba(31,27,22,0.08)] flex items-center justify-between group active:scale-95 transition-transform duration-150 text-left border border-transparent hover:border-outline-variant">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2.5 h-2.5 rounded-full bg-risk-moderate"></div>
+<span class="font-label-bold text-label-bold text-on-surface">East Legon</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mixed Use</span>
+</div>
+<div class="font-display-score-mobile text-display-score-mobile text-risk-moderate">6.1</div>
+</button>
+<!-- Card 4 (Low Risk) -->
+<button class="w-full bg-surface-white rounded-xl p-4 shadow-[0px_4px_20px_rgba(31,27,22,0.08)] flex items-center justify-between group active:scale-95 transition-transform duration-150 text-left border border-transparent hover:border-outline-variant">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2.5 h-2.5 rounded-full bg-risk-low"></div>
+<span class="font-label-bold text-label-bold text-on-surface">Ridge</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Administrative</span>
+</div>
+<div class="font-display-score-mobile text-display-score-mobile text-risk-low">3.2</div>
+</button>
+<!-- Card 5 (High Risk) -->
+<button class="w-full bg-surface-white rounded-xl p-4 shadow-[0px_4px_20px_rgba(31,27,22,0.08)] flex items-center justify-between group active:scale-95 transition-transform duration-150 text-left border border-transparent hover:border-outline-variant">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2.5 h-2.5 rounded-full bg-risk-high"></div>
+<span class="font-label-bold text-label-bold text-on-surface">Makola Market</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">High Density Commercial</span>
+</div>
+<div class="font-display-score-mobile text-display-score-mobile text-risk-high">9.1</div>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Constructed for mobile view) -->
+<nav class="fixed bottom-0 w-full bg-surface-white border-t border-outline-variant flex justify-around items-center py-2 px-2 pb-safe shadow-[0px_-4px_20px_rgba(31,27,22,0.04)] z-50 md:hidden">
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm">Map</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">database</span>
+<span class="font-label-sm text-label-sm">Data Explorer</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="font-label-sm text-label-sm">About</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UrbanHeat Accra - Map</title>
+<meta name="description" content="Interactive urban heat risk map of Accra, Ghana. View and filter locations by risk level."/>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Leaflet map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "inverse-primary": "#ffb598", "outline": "#8b7268",
+          "on-secondary-container": "#6a635d", "surface-bright": "#fbf9f5",
+          "secondary-container": "#eae1d8", "surface-container-highest": "#e4e2de",
+          "inverse-surface": "#30312e", "surface-dim": "#dbdad6",
+          "surface-variant": "#e4e2de", "on-surface-variant": "#57423a",
+          "risk-high": "#C4432B", "on-surface": "#1b1c1a",
+          "risk-low": "#2FA96C", "primary": "#a13a00", "secondary": "#635d57",
+          "surface-tint": "#a53c02", "tertiary-container": "#007da8",
+          "primary-container": "#c2521b", "risk-moderate": "#E0A030",
+          "risk-severe": "#7B0000", "surface-container-low": "#f5f3ef",
+          "on-error": "#ffffff", "background": "#fbf9f5",
+          "surface-container-high": "#eae8e4", "surface": "#fbf9f5",
+          "on-primary": "#ffffff", "on-background": "#1b1c1a",
+          "surface-container": "#efeeea", "tertiary": "#006385",
+          "outline-variant": "#dfc0b5", "surface-container-lowest": "#ffffff",
+          "inverse-on-surface": "#f2f0ec", "error": "#ba1a1a",
+          "on-secondary": "#ffffff", "on-tertiary": "#ffffff",
+          "surface-white": "#FFFFFF"
+        },
+        borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+        spacing: {
+          "container-margin": "1.5rem", "gutter": "1rem",
+          "panel-width-desktop": "380px", "component-gap": "0.75rem"
+        },
+        fontFamily: {
+          "display-score": ["Inter"], "body-md": ["Inter"],
+          "headline-md": ["Inter"], "headline-lg": ["Inter"],
+          "label-sm": ["Inter"], "body-lg": ["Inter"], "label-bold": ["Inter"]
+        },
+        fontSize: {
+          "display-score": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+          "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+          "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+          "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+          "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+          "label-bold": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  #map { width: 100%; height: 100%; }
+  .shadow-soft { box-shadow: 0px 4px 20px rgba(31,27,22,0.08); }
+  .leaflet-popup-content-wrapper { border-radius: 12px; }
+  .risk-popup-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .risk-popup-badge { display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600;
+    color: #fff; margin-bottom: 6px; }
+  .risk-popup-meta { font-size: 12px; color: #57423a; margin: 2px 0; }
+  .risk-popup-link { display: inline-block; margin-top: 8px; font-size: 12px;
+    font-weight: 600; color: #a13a00; text-decoration: underline; cursor: pointer; }
+  #api-status { transition: all 0.3s; }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex">
+
+<!-- SideNavBar -->
+<nav id="sidenav" class="hidden md:flex flex-col h-full py-6 bg-surface-container-low fixed left-0 top-0 w-[280px] border-r border-outline-variant z-50">
+  <div class="px-6 mb-10 flex flex-col items-start gap-2">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+        <span class="material-symbols-outlined text-on-primary" style="font-variation-settings:'FILL' 1">thermostat</span>
+      </div>
+      <div>
+        <h1 class="font-headline-md text-headline-md font-bold text-primary">UrbanHeat Accra</h1>
+        <p class="font-label-sm text-label-sm text-on-surface-variant">Climate Resilience</p>
+      </div>
+    </div>
+  </div>
+  <ul class="flex flex-col gap-1 px-4 w-full flex-grow">
+    <li>
+      <a id="nav-map" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-secondary-container text-primary font-bold border-r-4 border-primary transition-colors duration-150" href="map_dashboard.html">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">map</span>
+        <span class="font-body-md text-body-md">Map</span>
+      </a>
+    </li>
+    <li>
+      <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-secondary-container transition-colors" href="data_explorer.html">
+        <span class="material-symbols-outlined">database</span>
+        <span class="font-body-md text-body-md">Data Explorer</span>
+      </a>
+    </li>
+  </ul>
+  <!-- API status indicator -->
+  <div id="api-status" class="mx-4 mb-2 px-4 py-2 rounded-lg flex items-center gap-2 bg-surface-container text-on-surface-variant">
+    <span id="api-dot" class="w-2 h-2 rounded-full bg-gray-400 animate-pulse"></span>
+    <span id="api-label" class="font-label-sm text-label-sm">Connecting…</span>
+  </div>
+</nav>
+
+<!-- Main Content Area -->
+<main class="flex-grow md:ml-[280px] relative h-full flex flex-col">
+
+  <!-- TopAppBar -->
+  <header class="flex justify-between items-center px-gutter w-full md:w-[calc(100%-280px)] h-16 fixed top-0 right-0 bg-surface-bright/90 backdrop-blur-md border-b border-outline-variant shadow-sm z-40">
+    <nav class="hidden sm:flex gap-6">
+      <a id="filter-all" class="filter-btn font-label-bold text-label-bold text-primary border-b-2 border-primary pb-1 cursor-pointer transition-all" data-min="" data-max="">All</a>
+      <a id="filter-low" class="filter-btn font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-all pb-1 border-b-2 border-transparent cursor-pointer" data-min="0" data-max="30">Low</a>
+      <a id="filter-moderate" class="filter-btn font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-all pb-1 border-b-2 border-transparent cursor-pointer" data-min="30" data-max="55">Moderate</a>
+      <a id="filter-high" class="filter-btn font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-all pb-1 border-b-2 border-transparent cursor-pointer" data-min="55" data-max="100">High</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <span id="loading-indicator" class="hidden font-label-sm text-label-sm text-on-surface-variant animate-pulse">Loading…</span>
+      <button id="refresh-btn" class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors" title="Refresh data">
+        <span class="material-symbols-outlined">refresh</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Map Container -->
+  <div class="absolute inset-0 pt-16 z-0">
+    <div id="map"></div>
+  </div>
+
+  <!-- KPI Row -->
+  <div class="relative z-10 pt-20 px-container-margin w-full flex justify-center pointer-events-none">
+    <div class="flex flex-wrap justify-center gap-4 max-w-4xl w-full pointer-events-auto">
+      <div class="bg-surface-white px-6 py-4 rounded-xl shadow-soft border border-outline-variant min-w-[180px] flex-1">
+        <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Locations analyzed</p>
+        <p id="kpi-total" class="font-display-score text-display-score text-on-surface">—</p>
+      </div>
+      <div class="bg-surface-white px-6 py-4 rounded-xl shadow-soft border border-outline-variant min-w-[180px] flex-1">
+        <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">High / Severe risk</p>
+        <p id="kpi-high" class="font-display-score text-display-score text-risk-high">—</p>
+      </div>
+      <div class="bg-surface-white px-6 py-4 rounded-xl shadow-soft border border-outline-variant min-w-[180px] flex-1">
+        <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Avg. risk score</p>
+        <div class="flex items-baseline gap-2">
+          <p id="kpi-avg" class="font-display-score text-display-score text-on-surface">—</p>
+          <span class="font-label-bold text-label-bold text-risk-moderate">/100</span>
+        </div>
+      </div>
+      <div class="bg-surface-white px-6 py-4 rounded-xl shadow-soft border border-outline-variant min-w-[180px] flex-1">
+        <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Showing</p>
+        <p id="kpi-shown" class="font-display-score text-display-score text-on-surface">—</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="absolute bottom-6 left-[296px] z-10 bg-surface-white p-4 rounded-xl shadow-soft border border-outline-variant">
+    <h3 class="font-label-bold text-label-bold mb-3 text-on-surface">Risk Level</h3>
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-risk-low"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Low (&lt;30)</span></div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-risk-moderate"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Moderate (30–55)</span></div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-risk-high"></span><span class="font-label-sm text-label-sm text-on-surface-variant">High (55–75)</span></div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full" style="background:#7B0000"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Severe (&gt;75)</span></div>
+    </div>
+  </div>
+
+</main>
+
+<script type="module">
+  import { fetchLocations, fetchHealth, riskColor } from "./api.js";
+
+  // ── Leaflet map centred on Accra ──────────────────────────────────────────
+  const map = L.map("map", { zoomControl: true }).setView([5.603, -0.187], 12);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  }).addTo(map);
+
+  let markerLayer = L.layerGroup().addTo(map);
+  let allLocations = [];
+
+  // ── API health indicator ──────────────────────────────────────────────────
+  async function checkHealth() {
+    try {
+      await fetchHealth();
+      document.getElementById("api-dot").className = "w-2 h-2 rounded-full bg-risk-low";
+      document.getElementById("api-label").textContent = "API connected";
+    } catch {
+      document.getElementById("api-dot").className = "w-2 h-2 rounded-full bg-risk-high";
+      document.getElementById("api-label").textContent = "API unreachable";
+    }
+  }
+
+  // ── Render markers + KPIs ─────────────────────────────────────────────────
+  function renderMarkers(locations) {
+    markerLayer.clearLayers();
+
+    locations.forEach(loc => {
+      const color = riskColor(loc.risk_category);
+      const icon = L.divIcon({
+        className: "",
+        html: `<div style="
+          width:16px; height:16px; border-radius:50%;
+          background:${color}; border:2.5px solid #fff;
+          box-shadow:0 2px 6px rgba(0,0,0,0.25);" title="${loc.name}"></div>`,
+        iconSize: [16, 16],
+        iconAnchor: [8, 8],
+      });
+
+      const marker = L.marker([loc.latitude, loc.longitude], { icon });
+      marker.bindPopup(`
+        <div style="font-family:Inter,sans-serif; min-width:180px;">
+          <div class="risk-popup-title">${loc.name}</div>
+          ${loc.neighbourhood ? `<div class="risk-popup-meta">${loc.neighbourhood}</div>` : ""}
+          <div class="risk-popup-badge" style="background:${color}">${loc.risk_category}</div>
+          <div class="risk-popup-meta">Score: <strong>${loc.risk_score}/100</strong></div>
+          <div class="risk-popup-meta">NDVI: ${loc.ndvi.toFixed(2)} · Built-up: ${loc.built_up_density_pct.toFixed(0)}%</div>
+          <a class="risk-popup-link" href="location_detail.html?id=${loc.id}">View details →</a>
+        </div>
+      `, { maxWidth: 260 });
+      markerLayer.addLayer(marker);
+    });
+
+    // KPI update
+    const total = allLocations.length;
+    const high = allLocations.filter(l => ["High","Severe"].includes(l.risk_category)).length;
+    const avg = allLocations.length
+      ? Math.round(allLocations.reduce((s, l) => s + l.risk_score, 0) / allLocations.length)
+      : 0;
+
+    document.getElementById("kpi-total").textContent = total;
+    document.getElementById("kpi-high").textContent = high;
+    document.getElementById("kpi-avg").textContent = avg;
+    document.getElementById("kpi-shown").textContent = locations.length;
+  }
+
+  // ── Fetch & render ────────────────────────────────────────────────────────
+  async function loadLocations(filters = {}) {
+    const loading = document.getElementById("loading-indicator");
+    loading.classList.remove("hidden");
+    try {
+      const data = await fetchLocations(filters);
+      if (!Object.keys(filters).length) allLocations = data.results;
+      renderMarkers(data.results);
+    } catch (err) {
+      console.error("Failed to load locations:", err);
+      document.getElementById("kpi-total").textContent = "!";
+    } finally {
+      loading.classList.add("hidden");
+    }
+  }
+
+  // ── Filter tabs ───────────────────────────────────────────────────────────
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filter-btn").forEach(b => {
+        b.classList.remove("text-primary", "border-primary", "border-b-2");
+        b.classList.add("text-on-surface-variant", "border-transparent");
+      });
+      btn.classList.add("text-primary", "border-b-2", "border-primary");
+      btn.classList.remove("text-on-surface-variant", "border-transparent");
+
+      const min = btn.dataset.min;
+      const max = btn.dataset.max;
+      const filters = {};
+      if (min !== "") filters.min_risk = min;
+      if (max !== "") filters.max_risk = max;
+      loadLocations(filters);
+    });
+  });
+
+  document.getElementById("refresh-btn").addEventListener("click", () => loadLocations());
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+  checkHealth();
+  loadLocations();
+</script>
+</body>
+</html>

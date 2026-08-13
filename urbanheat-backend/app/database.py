@@ -1,0 +1,29 @@
+"""
+Database engine + session setup.
+SQLite via SQLAlchemy, per Section 8.7 (stack doc): single file, zero external
+service, fully portable (NFR5), swappable to Postgres later by changing DATABASE_URL only.
+"""
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./urbanheat.db")
+
+# check_same_thread only needed for SQLite
+connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+
+engine = create_engine(DATABASE_URL, connect_args=connect_args)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+
+def get_db():
+    """FastAPI dependency: yields a DB session, always closed after the request."""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simulate - UrbanHeat Accra</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#ffb598",
+                    "on-tertiary-container": "#fbfcff",
+                    "outline": "#8b7268",
+                    "on-secondary-container": "#6a635d",
+                    "surface-bright": "#fbf9f5",
+                    "on-secondary-fixed-variant": "#4b4640",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#eae1d8",
+                    "primary-fixed-dim": "#ffb598",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e4e2de",
+                    "secondary-fixed": "#eae1d8",
+                    "inverse-surface": "#30312e",
+                    "on-primary-fixed-variant": "#7e2c00",
+                    "surface-dim": "#dbdad6",
+                    "surface-variant": "#e4e2de",
+                    "on-secondary-fixed": "#1f1b16",
+                    "on-surface-variant": "#57423a",
+                    "risk-high": "#C4432B",
+                    "secondary-fixed-dim": "#cec5bd",
+                    "on-surface": "#1b1c1a",
+                    "on-primary-fixed": "#370e00",
+                    "risk-low": "#2FA96C",
+                    "primary": "#a13a00",
+                    "secondary": "#635d57",
+                    "surface-tint": "#a53c02",
+                    "tertiary-container": "#007da8",
+                    "primary-container": "#c2521b",
+                    "risk-moderate": "#E0A030",
+                    "surface-container-low": "#f5f3ef",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#78d1ff",
+                    "tertiary-fixed": "#c3e8ff",
+                    "background": "#fbf9f5",
+                    "surface-container-high": "#eae8e4",
+                    "primary-fixed": "#ffdbce",
+                    "surface": "#fbf9f5",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1b1c1a",
+                    "surface-container": "#efeeea",
+                    "tertiary": "#006385",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#dfc0b5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#001e2c",
+                    "inverse-on-surface": "#f2f0ec",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004d68",
+                    "on-tertiary": "#ffffff",
+                    "surface-white": "#FFFFFF"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin": "1.5rem",
+                    "gutter": "1rem",
+                    "panel-width-tablet": "340px",
+                    "panel-width-desktop": "380px",
+                    "component-gap": "0.75rem"
+            },
+            "fontFamily": {
+                    "display-score-mobile": ["Inter"],
+                    "display-score": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-bold": ["Inter"]
+            },
+            "fontSize": {
+                    "display-score-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "display-score": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface-container-low text-on-surface min-h-screen flex">
+<!-- Nav shell is suppressed as this is a detail drawer context (transactional/task-focused) -->
+<!-- Main Content Area -->
+<main class="flex-1 relative w-full h-screen overflow-hidden">
+<!-- Background Map Placeholder -->
+<div class="absolute inset-0 z-0 bg-surface-dim">
+<img class="w-full h-full object-cover opacity-50" data-alt="A clean, minimalist street map of Accra, Ghana, shown from a top-down perspective. The map uses a very subtle, pale color palette with off-white roads and very light grey buildings to act as a neutral background. There are faint, slightly warmer toned regions hinting at urban density, but the overall effect is extremely calm and low-contrast to allow data overlays to stand out clearly." data-location="Accra" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl5FtnhTESUwFwjHumzzyYVv_1W17DYRN_5sDuIb5fjONQqkPGzcOE1cCXxom8dIMDtKoVJXlFtSyKinTw9IF_lYQzpKg8dRGk4HwXhA9nJPjT9g-gEVMFllWs2eGwZJhOdsP6xvZbbgqIrGs79VWY_U_0aKkLAjiF3Bh-k3W1pvAetrm3POcJs88utpCtRZlTfKttoHSznDxrGNILD1XpyL6qR31c5aeChg8cm-_VhCM_yp3LMg2j"/>
+</div>
+<!-- Detail Drawer (Overlay) -->
+<div class="absolute right-0 top-0 bottom-0 w-full md:w-panel-width-desktop bg-surface-white shadow-[0px_4px_20px_rgba(31,27,22,0.08)] z-10 flex flex-col h-full overflow-y-auto">
+<!-- Mobile Drag Handle -->
+<div class="w-full flex justify-center pt-3 pb-1 md:hidden">
+<div class="w-12 h-1.5 bg-surface-variant rounded-full"></div>
+</div>
+<!-- Header -->
+<header class="px-container-margin py-6 border-b border-outline-variant/30 flex justify-between items-start sticky top-0 bg-surface-white/95 backdrop-blur z-20">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">East Legon</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+                        Sector 4B
+                    </p>
+</div>
+<button aria-label="Close drawer" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<!-- Tabs -->
+<div class="flex border-b border-outline-variant/30 px-container-margin">
+<button class="py-3 px-2 font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-colors flex-1 text-center">Overview</button>
+<button class="py-3 px-2 font-label-bold text-label-bold text-primary border-b-2 border-primary flex-1 text-center">Simulate</button>
+<button class="py-3 px-2 font-label-bold text-label-bold text-on-surface-variant hover:text-primary transition-colors flex-1 text-center">History</button>
+</div>
+<!-- Scrollable Content -->
+<div class="p-container-margin flex flex-col gap-8 flex-1">
+<!-- Intervention Actions -->
+<section>
+<h3 class="font-label-bold text-label-bold text-on-surface-variant mb-4 uppercase tracking-wider">Interventions</h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="py-3 px-4 rounded-lg border-2 border-primary bg-primary text-on-primary font-label-bold text-label-bold text-center transition-all hover:bg-surface-tint">
+                            +10% Vegetation
+                        </button>
+<button class="py-3 px-4 rounded-lg border-2 border-primary bg-transparent text-primary font-label-bold text-label-bold text-center transition-all hover:bg-primary-container/10">
+                            +20% Vegetation
+                        </button>
+</div>
+</section>
+<!-- Comparison Module -->
+<section class="bg-surface rounded-xl p-5 border border-outline-variant/30">
+<h3 class="font-label-bold text-label-bold text-on-surface-variant mb-6 text-center">Heat Risk Score Projection</h3>
+<div class="flex items-center justify-between mb-4">
+<!-- Before -->
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">Current</span>
+<div class="flex items-baseline gap-1">
+<span class="w-3 h-3 rounded-full bg-risk-high inline-block mb-1"></span>
+<span class="font-display-score text-display-score text-on-surface">78</span>
+</div>
+</div>
+<!-- Arrow -->
+<div class="flex flex-col items-center justify-center px-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-[32px]">arrow_forward</span>
+<div class="bg-risk-low/10 text-risk-low font-label-bold text-label-bold px-3 py-1 rounded-full mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">arrow_downward</span>
+                                -14
+                            </div>
+</div>
+<!-- After -->
+<div class="flex flex-col items-center flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">Projected</span>
+<div class="flex items-baseline gap-1">
+<span class="w-3 h-3 rounded-full bg-risk-moderate inline-block mb-1"></span>
+<span class="font-display-score text-display-score text-on-surface">64</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Updated Factor Bar Chart -->
+<section>
+<h3 class="font-label-bold text-label-bold text-on-surface-variant mb-4 uppercase tracking-wider">Contributing Factors</h3>
+<div class="space-y-4">
+<!-- Factor 1: Tree Canopy (Improved) -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-1.5">
+<span class="text-on-surface">Tree Canopy Cover</span>
+<span class="text-risk-low font-bold">25% (+10%)</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden flex">
+<div class="h-full bg-on-surface" style="width: 15%"></div>
+<div class="h-full bg-risk-low opacity-80" style="width: 10%"></div>
+</div>
+</div>
+<!-- Factor 2: Impervious Surfaces -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-1.5">
+<span class="text-on-surface">Impervious Surfaces</span>
+<span class="text-on-surface-variant">65%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-on-surface" style="width: 65%"></div>
+</div>
+</div>
+<!-- Factor 3: Building Density -->
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-1.5">
+<span class="text-on-surface">Building Density</span>
+<span class="text-on-surface-variant">42%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-on-surface" style="width: 42%"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer area -->
+<footer class="p-container-margin border-t border-outline-variant/30 mt-auto bg-surface-white">
+<div class="flex flex-col items-center gap-3">
+<button class="font-label-bold text-label-bold text-primary hover:text-surface-tint transition-colors underline underline-offset-4 decoration-primary/30">
+                        Reset simulation
+                    </button>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center opacity-80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">info</span>
+                        Simulation uses a simplified model â indicative only.
+                    </p>
+</div>
+</footer>
+</div>
+</main>
+</body></html>

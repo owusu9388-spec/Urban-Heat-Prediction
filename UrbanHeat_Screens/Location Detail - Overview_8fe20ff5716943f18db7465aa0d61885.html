@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UrbanHeat Accra - Location Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#ffb598",
+                        "on-tertiary-container": "#fbfcff",
+                        "outline": "#8b7268",
+                        "on-secondary-container": "#6a635d",
+                        "surface-bright": "#fbf9f5",
+                        "on-secondary-fixed-variant": "#4b4640",
+                        "on-primary-container": "#fffbff",
+                        "secondary-container": "#eae1d8",
+                        "primary-fixed-dim": "#ffb598",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e4e2de",
+                        "secondary-fixed": "#eae1d8",
+                        "inverse-surface": "#30312e",
+                        "on-primary-fixed-variant": "#7e2c00",
+                        "surface-dim": "#dbdad6",
+                        "surface-variant": "#e4e2de",
+                        "on-secondary-fixed": "#1f1b16",
+                        "on-surface-variant": "#57423a",
+                        "risk-high": "#C4432B",
+                        "secondary-fixed-dim": "#cec5bd",
+                        "on-surface": "#1b1c1a",
+                        "on-primary-fixed": "#370e00",
+                        "risk-low": "#2FA96C",
+                        "primary": "#a13a00",
+                        "secondary": "#635d57",
+                        "surface-tint": "#a53c02",
+                        "tertiary-container": "#007da8",
+                        "primary-container": "#c2521b",
+                        "risk-moderate": "#E0A030",
+                        "surface-container-low": "#f5f3ef",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#78d1ff",
+                        "tertiary-fixed": "#c3e8ff",
+                        "background": "#fbf9f5",
+                        "surface-container-high": "#eae8e4",
+                        "primary-fixed": "#ffdbce",
+                        "surface": "#fbf9f5",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1b1c1a",
+                        "surface-container": "#efeeea",
+                        "tertiary": "#006385",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#dfc0b5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001e2c",
+                        "inverse-on-surface": "#f2f0ec",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004d68",
+                        "on-tertiary": "#ffffff",
+                        "surface-white": "#FFFFFF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "gutter": "1rem",
+                        "panel-width-tablet": "340px",
+                        "panel-width-desktop": "380px",
+                        "component-gap": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "display-score-mobile": ["Inter", "sans-serif"],
+                        "display-score": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "label-bold": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-score-mobile": ["36px", { "lineHeight": "44px", "fontWeight": "700" }],
+                        "display-score": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .soft-shadow {
+            box-shadow: 0px 4px 20px rgba(31, 27, 22, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface h-screen w-screen overflow-hidden flex font-sans">
+<!-- Main Content Canvas (Map area simulation) -->
+<main class="flex-1 relative h-full w-full bg-surface-container-low">
+<!-- Mock Map Background -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="A clean, minimalist vector map of Accra, Ghana, showing city blocks and major roads. The map uses a light, warm neutral color palette with subtle terracotta highlights indicating heat zones. The style is modern, professional, and data-focused, suitable for a professional dashboard background without text overlays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyj2Huu3eAuGI-CtjkGG9YKtTtaf_jdZCDnbmIqhBLBCNlq9_9-4aBe2nZUkNl8nNWmQQX6oU-PcmOdLqo6qGS0qrWIyJE53z9UZ6wpkx57DEX70DkJgKKbD8YTvemL9Nld9TokqFXs8QWaaNWJsuZnf1MG8NVVeg59xJ06o2DfDvlBdBmdVeXSf5leCGxlYayIh2q0K9Nh155Czhj-CUzqZSWgIJ1MyW8q-I6_TQKuEjE9x7TG4j5"/>
+</div>
+<!-- Location Detail Drawer (Right Side) -->
+<aside class="absolute top-0 right-0 h-full w-panel-width-desktop bg-surface-white soft-shadow z-20 flex flex-col transform transition-transform duration-300 ease-in-out border-l border-outline-variant">
+<!-- Drawer Header / Tabs -->
+<header class="pt-6 px-gutter border-b border-surface-variant bg-surface-white shrink-0">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">James Town</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+                            5.5323Â° N, 0.2078Â° W
+                        </p>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Tabs -->
+<div class="flex gap-6 border-b border-surface-variant">
+<button class="pb-3 px-1 border-b-2 border-primary font-label-bold text-label-bold text-primary">Overview</button>
+<button class="pb-3 px-1 border-b-2 border-transparent font-label-bold text-label-bold text-on-surface-variant hover:text-on-surface transition-colors">Simulate</button>
+</div>
+</header>
+<!-- Drawer Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto p-gutter bg-surface-container-low space-y-component-gap">
+<!-- Risk Score Card -->
+<section class="bg-surface-white rounded-lg p-6 border border-outline-variant flex flex-col items-center text-center">
+<h3 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider mb-2">Heat Risk Score</h3>
+<div class="flex items-end justify-center gap-2 mb-3">
+<span class="font-display-score text-display-score text-on-surface">78</span>
+<span class="font-body-md text-body-md text-on-surface-variant mb-2">/ 100</span>
+</div>
+<!-- Badge -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-risk-high text-on-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] filled-icon" data-icon="warning">warning</span>
+                        High Risk
+                    </div>
+</section>
+<!-- Contributing Factors Card -->
+<section class="bg-surface-white rounded-lg p-6 border border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">Top contributing factors</h3>
+<div class="space-y-5">
+<!-- Factor 1 -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-body-md text-body-md text-on-surface">Low vegetation cover</span>
+<span class="font-label-bold text-label-bold text-risk-high">+18</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-on-secondary-fixed h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<!-- Factor 2 -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-body-md text-body-md text-on-surface">High built-up density</span>
+<span class="font-label-bold text-label-bold text-risk-moderate">+12</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-on-secondary-fixed h-full rounded-full" style="width: 50%"></div>
+</div>
+</div>
+<!-- Factor 3 -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-body-md text-body-md text-on-surface">Elevated surface temp</span>
+<span class="font-label-bold text-label-bold text-risk-moderate">+9</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-on-secondary-fixed h-full rounded-full" style="width: 35%"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Drawer Footer (Sticky Summary) -->
+<footer class="p-gutter border-t border-surface-variant bg-surface-white shrink-0">
+<div class="flex items-start gap-3 bg-secondary-container rounded-lg p-4">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="insights">insights</span>
+<p class="font-body-md text-body-md text-on-surface">
+                        Risk is driven mainly by low vegetation cover in this area.
+                    </p>
+</div>
+</footer>
+</aside>
+</main>
+</body></html>

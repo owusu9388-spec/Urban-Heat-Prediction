@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Data Explorer - UrbanHeat Accra</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#ffb598",
+                        "on-tertiary-container": "#fbfcff",
+                        "outline": "#8b7268",
+                        "on-secondary-container": "#6a635d",
+                        "surface-bright": "#fbf9f5",
+                        "on-secondary-fixed-variant": "#4b4640",
+                        "on-primary-container": "#fffbff",
+                        "secondary-container": "#eae1d8",
+                        "primary-fixed-dim": "#ffb598",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e4e2de",
+                        "secondary-fixed": "#eae1d8",
+                        "inverse-surface": "#30312e",
+                        "on-primary-fixed-variant": "#7e2c00",
+                        "surface-dim": "#dbdad6",
+                        "surface-variant": "#e4e2de",
+                        "on-secondary-fixed": "#1f1b16",
+                        "on-surface-variant": "#57423a",
+                        "risk-high": "#C4432B",
+                        "secondary-fixed-dim": "#cec5bd",
+                        "on-surface": "#1b1c1a",
+                        "on-primary-fixed": "#370e00",
+                        "risk-low": "#2FA96C",
+                        "primary": "#a13a00",
+                        "secondary": "#635d57",
+                        "surface-tint": "#a53c02",
+                        "tertiary-container": "#007da8",
+                        "primary-container": "#c2521b",
+                        "risk-moderate": "#E0A030",
+                        "surface-container-low": "#f5f3ef",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#78d1ff",
+                        "tertiary-fixed": "#c3e8ff",
+                        "background": "#fbf9f5",
+                        "surface-container-high": "#eae8e4",
+                        "primary-fixed": "#ffdbce",
+                        "surface": "#fbf9f5",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1b1c1a",
+                        "surface-container": "#efeeea",
+                        "tertiary": "#006385",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#dfc0b5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001e2c",
+                        "inverse-on-surface": "#f2f0ec",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004d68",
+                        "on-tertiary": "#ffffff",
+                        "surface-white": "#FFFFFF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "1.5rem",
+                        "gutter": "1rem",
+                        "panel-width-tablet": "340px",
+                        "panel-width-desktop": "380px",
+                        "component-gap": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "display-score-mobile": ["Inter"],
+                        "display-score": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-bold": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-score-mobile": ["36px", { "lineHeight": "44px", "fontWeight": "700" }],
+                        "display-score": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F7F5F1; /* Warm off-white fallback */
+        }
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-low border-r border-outline-variant flex flex-col py-6 z-50 hidden md:flex">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline-md">
+<span class="material-symbols-outlined">thermostat</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">UrbanHeat Accra</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Climate Resilience</p>
+</div>
+</div>
+<ul class="flex flex-col gap-2 px-4 w-full">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-secondary-container transition-colors font-body-md text-body-md w-full" href="#">
+<span class="material-symbols-outlined">map</span>
+                    Map
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-r-4 border-primary bg-secondary-container/50 transition-colors font-body-md text-body-md w-full scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">database</span>
+                    Data Explorer
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-secondary-container transition-colors font-body-md text-body-md w-full" href="#">
+<span class="material-symbols-outlined">info</span>
+                    About
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[280px] min-h-screen flex flex-col w-full relative">
+<!-- TopAppBar (Simplified for Data Explorer Context) -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-280px)] h-16 bg-surface-bright/90 backdrop-blur-md flex justify-between items-center px-gutter z-40 shadow-sm border-b border-outline-variant hidden md:flex">
+<h2 class="font-headline-md text-headline-md font-extrabold text-primary">Location Dataset</h2>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full border border-outline-variant bg-surface focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md text-on-surface w-64 shadow-sm" placeholder="Search locations..." type="text"/>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small, professional headshot portrait of a city planner. The lighting is soft and natural, emphasizing a calm and focused demeanor. The background is a clean, out-of-focus modern office setting with subtle warm tones, aligning with the overall warm minimal aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVqyxs22Skus26mZuxTvkWAibh1UZFWPyG8a9CHRuAgVWFs6a1NlSbVOGOfssq8rQwggxyPNuu-4cFkJwHK_zRJtrO0-cMWiCgKPYrquBMcylq3El5p3Sx_IQuUVSqnW5c2DBo0QGG51tn7F0rotK0A0at260uV0ocDYudC3WG_3Bprd41Sf0c8R1GHH3oB5L_fjIUrDptZ2BeGDu_ETGf6Y7yDHZtpE7zeBAeXbnwevS1hMOZDNI1"/>
+</div>
+</div>
+</header>
+<!-- Mobile Header (Visible only on small screens) -->
+<header class="md:hidden bg-surface-container-low border-b border-outline-variant py-4 px-4 sticky top-0 z-40 flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Location Dataset</h2>
+<button class="text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Data Table Section -->
+<div class="p-4 md:p-container-margin md:mt-16 flex-1 bg-background overflow-hidden flex flex-col">
+<div class="md:hidden mb-4 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-outline-variant bg-surface focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md text-on-surface shadow-sm" placeholder="Search locations..." type="text"/>
+</div>
+<div class="bg-surface-white rounded-xl shadow-sm border border-outline-variant flex-1 overflow-hidden flex flex-col">
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low sticky top-0 z-10 border-b border-outline-variant shadow-sm">
+<tr>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface whitespace-nowrap">Name</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface whitespace-nowrap">Latitude</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface whitespace-nowrap">Longitude</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface whitespace-nowrap">LST (Â°C)</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface whitespace-nowrap">NDVI</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface whitespace-nowrap">NDBI</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface whitespace-nowrap">Bldg Density</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface whitespace-nowrap">Pop Density</th>
+<th class="py-3 px-4 font-label-bold text-label-bold text-on-surface whitespace-nowrap text-right">Heat Risk</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-4 font-medium">Osu Central</td>
+<td class="py-3 px-4 text-on-surface-variant">5.5580Â° N</td>
+<td class="py-3 px-4 text-on-surface-variant">0.1810Â° W</td>
+<td class="py-3 px-4 font-semibold text-primary">34.2</td>
+<td class="py-3 px-4 text-on-surface-variant">0.21</td>
+<td class="py-3 px-4 text-on-surface-variant">0.65</td>
+<td class="py-3 px-4 text-on-surface-variant">High</td>
+<td class="py-3 px-4 text-on-surface-variant">Very High</td>
+<td class="py-3 px-4 text-right">
+<div class="inline-flex items-center gap-2 bg-surface px-3 py-1 rounded-full border border-outline-variant">
+<span class="w-3 h-3 rounded-full bg-risk-high"></span>
+<span class="font-label-bold text-label-bold text-on-surface">Critical</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-4 font-medium">Cantonments</td>
+<td class="py-3 px-4 text-on-surface-variant">5.5833Â° N</td>
+<td class="py-3 px-4 text-on-surface-variant">0.1667Â° W</td>
+<td class="py-3 px-4 font-semibold">29.5</td>
+<td class="py-3 px-4 text-on-surface-variant">0.45</td>
+<td class="py-3 px-4 text-on-surface-variant">0.30</td>
+<td class="py-3 px-4 text-on-surface-variant">Low</td>
+<td class="py-3 px-4 text-on-surface-variant">Medium</td>
+<td class="py-3 px-4 text-right">
+<div class="inline-flex items-center gap-2 bg-surface px-3 py-1 rounded-full border border-outline-variant">
+<span class="w-3 h-3 rounded-full bg-risk-low"></span>
+<span class="font-label-bold text-label-bold text-on-surface">Low</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-4 font-medium">Jamestown</td>
+<td class="py-3 px-4 text-on-surface-variant">5.5342Â° N</td>
+<td class="py-3 px-4 text-on-surface-variant">0.2115Â° W</td>
+<td class="py-3 px-4 font-semibold text-primary">35.8</td>
+<td class="py-3 px-4 text-on-surface-variant">0.12</td>
+<td class="py-3 px-4 text-on-surface-variant">0.78</td>
+<td class="py-3 px-4 text-on-surface-variant">Very High</td>
+<td class="py-3 px-4 text-on-surface-variant">High</td>
+<td class="py-3 px-4 text-right">
+<div class="inline-flex items-center gap-2 bg-surface px-3 py-1 rounded-full border border-outline-variant">
+<span class="w-3 h-3 rounded-full bg-risk-high"></span>
+<span class="font-label-bold text-label-bold text-on-surface">Critical</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-4 font-medium">Airport Residential</td>
+<td class="py-3 px-4 text-on-surface-variant">5.6120Â° N</td>
+<td class="py-3 px-4 text-on-surface-variant">0.1840Â° W</td>
+<td class="py-3 px-4 font-semibold text-risk-moderate">31.4</td>
+<td class="py-3 px-4 text-on-surface-variant">0.38</td>
+<td class="py-3 px-4 text-on-surface-variant">0.42</td>
+<td class="py-3 px-4 text-on-surface-variant">Medium</td>
+<td class="py-3 px-4 text-on-surface-variant">Low</td>
+<td class="py-3 px-4 text-right">
+<div class="inline-flex items-center gap-2 bg-surface px-3 py-1 rounded-full border border-outline-variant">
+<span class="w-3 h-3 rounded-full bg-risk-moderate"></span>
+<span class="font-label-bold text-label-bold text-on-surface">Elevated</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-4 font-medium">East Legon</td>
+<td class="py-3 px-4 text-on-surface-variant">5.6358Â° N</td>
+<td class="py-3 px-4 text-on-surface-variant">0.1555Â° W</td>
+<td class="py-3 px-4 font-semibold text-risk-moderate">32.1</td>
+<td class="py-3 px-4 text-on-surface-variant">0.31</td>
+<td class="py-3 px-4 text-on-surface-variant">0.55</td>
+<td class="py-3 px-4 text-on-surface-variant">High</td>
+<td class="py-3 px-4 text-on-surface-variant">Medium</td>
+<td class="py-3 px-4 text-right">
+<div class="inline-flex items-center gap-2 bg-surface px-3 py-1 rounded-full border border-outline-variant">
+<span class="w-3 h-3 rounded-full bg-risk-moderate"></span>
+<span class="font-label-bold text-label-bold text-on-surface">Elevated</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-4 font-medium">Labadi</td>
+<td class="py-3 px-4 text-on-surface-variant">5.5688Â° N</td>
+<td class="py-3 px-4 text-on-surface-variant">0.1458Â° W</td>
+<td class="py-3 px-4 font-semibold">28.8</td>
+<td class="py-3 px-4 text-on-surface-variant">0.42</td>
+<td class="py-3 px-4 text-on-surface-variant">0.38</td>
+<td class="py-3 px-4 text-on-surface-variant">Medium</td>
+<td class="py-3 px-4 text-on-surface-variant">Medium</td>
+<td class="py-3 px-4 text-right">
+<div class="inline-flex items-center gap-2 bg-surface px-3 py-1 rounded-full border border-outline-variant">
+<span class="w-3 h-3 rounded-full bg-risk-low"></span>
+<span class="font-label-bold text-label-bold text-on-surface">Low</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination footer -->
+<div class="bg-surface-container-low border-t border-outline-variant px-4 py-3 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Showing 1 to 6 of 142 entries</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded border border-outline-variant text-on-surface-variant hover:bg-surface disabled:opacity-50" disabled="">Prev</button>
+<button class="px-3 py-1 rounded bg-primary text-on-primary">1</button>
+<button class="px-3 py-1 rounded border border-outline-variant text-on-surface hover:bg-surface">2</button>
+<button class="px-3 py-1 rounded border border-outline-variant text-on-surface hover:bg-surface">3</button>
+<button class="px-3 py-1 rounded border border-outline-variant text-on-surface hover:bg-surface">Next</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
