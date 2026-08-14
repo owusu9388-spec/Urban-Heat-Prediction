@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #a13a00;
+    --color-primary-container: #c2521b;
+    --color-primary-fixed: #ffdbce;
+    --color-secondary: #635d57;
+    --color-secondary-container: #eae1d8;
+    --color-background: #fbf9f5;
+    --color-surface: #fbf9f5;
+    --color-surface-white: #ffffff;
+    --color-surface-dim: #dbdad6;
+    --color-surface-container-low: #f5f3ef;
+    --color-surface-container: #efeeea;
+    --color-surface-container-high: #eae8e4;
+    --color-surface-container-highest: #e4e2de;
+    --color-on-surface: #1b1c1a;
+    --color-on-surface-variant: #57423a;
+    --color-outline: #8b7268;
+    --color-outline-variant: #dfc0b5;
+    
+    /* Risk Levels */
+    --color-risk-low: #2FA96C;
+    --color-risk-moderate: #E0A030;
+    --color-risk-high: #C4432B;
+    --color-risk-severe: #7B0000;
+  }
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d3cdc7;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b5aca3;
+}
+
+/* Leaflet Map Customizations */
+.leaflet-container {
+  font-family: inherit;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: #f1ede8;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #ffffff;
+  color: #1b1c1a;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px -4px rgba(27, 28, 26, 0.16), 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dfc0b5;
+  padding: 0;
+}
+
+.leaflet-popup-content {
+  margin: 14px 16px;
+  line-height: 1.4;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff;
+  border: 1px solid #dfc0b5;
+  box-shadow: none;
+}
+
+/* Pulse animation for markers */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+.marker-pulse {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Card glass effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(223, 192, 181, 0.7);
+}
