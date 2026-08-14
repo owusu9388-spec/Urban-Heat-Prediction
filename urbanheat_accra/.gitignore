@@ -1,0 +1,19 @@
+# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+
+# Database
+data/urbanheat.db
+data/*.db
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

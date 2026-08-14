@@ -1,0 +1,15 @@
+# UrbanHeat Accra — backend dependencies
+# Pinned to the exact versions this project was built and tested against.
+# Install: pip install -r requirements.txt --break-system-packages
+# (drop --break-system-packages if installing inside a virtualenv)
+
+fastapi==0.141.1          # web framework: routing + Pydantic validation + OpenAPI docs for free
+pydantic==2.13.4          # request/response validation (NFR6)
+sqlalchemy==2.0.52        # ORM, parameterised queries (no raw SQL, no injection risk)
+scikit-learn==1.8.0       # RandomForestRegressor for heat-risk prediction
+joblib==1.5.3             # model serialisation (models/heat_risk_model.pkl)
+pandas==3.0.2             # dataset loading/cleaning for training + seeding
+numpy==2.4.4              # numeric operations (metric calculation)
+uvicorn[standard]==0.52.3 # ASGI server to run the FastAPI app
+httpx==0.28.1             # HTTP client (used by TestClient; reserved for future external API calls)
+pytest==9.1.1             # test runner

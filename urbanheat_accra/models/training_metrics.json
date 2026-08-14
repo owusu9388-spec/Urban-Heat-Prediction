@@ -1,0 +1,17 @@
+{
+  "mae": 1.242,
+  "rmse": 1.6535,
+  "r2": 0.9914,
+  "n_train": 22,
+  "n_test": 8,
+  "feature_importances": {
+    "ndvi": 0.20497875065412824,
+    "land_surface_temperature": 0.17871881853051216,
+    "built_up_density": 0.17673831851011493,
+    "impervious_surface": 0.12667432346026183,
+    "population_density": 0.15120863422911315,
+    "vegetation_percentage": 0.1616811546158698
+  },
+  "random_seed": 42,
+  "note": "Metrics computed on synthetic demo dataset; indicative only given small n."
+}
